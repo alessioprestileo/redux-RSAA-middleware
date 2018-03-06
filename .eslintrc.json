@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "flowtype/delimiter-dangle": [
+      2,
+      "always-multiline"
+    ],
+    "flowtype/semi": [
+      2,
+      "always"
+    ]
+  }
+}

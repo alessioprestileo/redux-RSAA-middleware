@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "es2015": {
+        "modules": false
+      }
+    }],
+    "react",
+    "flow"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    ["babel-plugin-root-import"],
+    "transform-object-rest-spread"
+  ]
+}
