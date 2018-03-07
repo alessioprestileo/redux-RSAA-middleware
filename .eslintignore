@@ -2,3 +2,4 @@ flow-typed/**
 node_modules/**
 build_dev/**
 build_prod/**
+build_npm/**

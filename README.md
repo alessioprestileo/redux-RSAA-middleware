@@ -1,86 +1,101 @@
-# React seed
+# Redux RSAA Middleware
 
-This project can be used as a seed for a React project.
+Redux middleware for handling API-calling actions.
 
 ## Table of Contents
 
-- [Initialize the Project](#initialize-the-project)
-- [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm run build:dev](#npm-run-build-dev)
-  - [npm run build:prod](#npm-run-build-prod)
-  - [npm run flow](#npm-run-flow)
-  - [npm run flow-typed-install](#npm-run-flow-typed-install)
-  - [npm run initialize-project](#npm-run-initialize-project)
-  - [npm run lint:fix](#npm-run-lint-fix)
-  - [npm run lint:log](#npm-run-lint-log)
-  - [npm run precommit](#npm-run-precommit)
-  - [npm run serve:dev](#npm-run-serve-dev)
-  - [npm run serve:prod](#npm-run-serve-prod)
-  - [npm run test](#npm-run-test)
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
 
-## Initialize the Project
+## Introduction
 
-In order to install the dependencies needed by this project and the types needed to perform static type checking with flow, run the following command from within the project directory:\
-`npm run initialize-project`
+This middleware intercepts and handles actions of type ```'RSAA'``` and forwards to the next middleware actions of any other type.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To install this package, run:
 
-### `npm start`
+```npm install redux-rsaa-middleware --save```
 
-Alias for `npm run serve:dev`.
+## Usage
 
-### <a id="npm-run-build-dev"></a>`npm run build:dev`
+The middleware can be applied to your Redux store by including the following code in the entry point of your project (for example index.jsx)\
+Notice that ```topReducer``` and ```initialState``` need to be defined within your project.
 
-Runs all tests, linting and static type checking, then creates a development build of the app.\
-The resulting build can be found in the directory "build_dev".
+```js
 
-### <a id="npm-run-build-prod"></a>`npm run build:prod`
+import { createStore, applyMiddleware } from 'redux';
+import RSAAMiddleware from 'redux-rsaa-middleware';
+import topReducer from './reducers';
+import initialState from './initialState';
 
-Runs all tests, linting and static type checking, then creates a production build of the app.\
-The resulting build can be found in the directory "build_prod".
+const createStoreWithMiddleware = applyMiddleware(RSAAMiddleware)(createStore);
+const configureStore = initState =>
+  createStoreWithMiddleware(topReducer, initState);
+const store = configureStore(initialState);
 
-### `npm run flow`
+```
 
-Performs statyc type checking on all files annotated with "// @flow".
+The middleware will intercept and handle actions of type ```'RSAA'```, which must respect the following type definition:
 
-### `npm run flow-typed-install`
+```js
 
-Installs available flow types for all project dependencies. Creates stub flow types of type "any" when flow types are not available.
+{
+  type: 'RSAA',
+  payload: {
+    method?: string,
+    path?: string,
+    query?: string,
+    error?: Object,
+    errorTime?: string,
+    response?: Object,
+    failureAction?: Action,
+    successAction?: Action,
+    startedSendingAction?: Action,
+    finishedSendingAction?: Action,
+  },
+};
 
-### `npm run initialize-project`
+```
 
-Runs `npm install` to install all the npm dependencies, and then `npm run flow-typed-install`.
+When such an action is dispatched, the middleware will attempt to send a request is sent using the values of the payload properties ```method```, ```path``` and ```query```, and dispatch during the process the actions contained in the following properties:
 
-### <a id="npm-run-lint-fix"></a>`npm run lint:fix`
+- startedSendingAction
 
-Runs eslint on all files within the project, as specified in .eslintrc.json and .eslintignore.\
-Fixes the problems found.
+  Is dispatched to let the store know that the process has started.\
+  If no value is given to this property, a default action is dispatched, which has type ```'API_CALL_STARTED_SENDING'```, and empty payload.
 
-### <a id="npm-run-lint-log"></a>`npm run lint:log`
+- successAction
 
-Runs eslint on all files within the project, as specified in .eslintrc.json and .eslintignore.\
-Logs the results.
+  Is dispatched if the request is successful, to let the store know that the request was successful.\
+  The response is inserted into the payload as value of the property ```response```.\
+  If no value is given to ```successAction```, a default action is dispatched, which has type ```'API_CALL_SUCCESS'```, and payload as follows:
+  ```js
+  {
+    response: Object
+  }
+  ```
 
-### `npm run precommit`
+- failureAction
 
-Runs all tests, formatting, linting and static type checking.\
-It is run automatically by husky on `git commit`.
+  Is dispatched if the request fails, to let the store know that the request failed.\
+  If no value is given to this property, a default action is dispatched, which has type ```'API_CALL_FAILURE'```, and payload as follows:
+  ```js
+  {
+    error: Object,
+    errorTime: string,
+  }
+  ```
 
-### <a id="npm-run-serve-dev"></a>`npm run serve:dev`
+- finishedSendingAction
 
-Runs all tests, linting and static type checking, then builds and runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  Is dispatched to let the store know that the process has ended.\
+  If no value is given to this property, a default action is dispatched, which has type ```'API_CALL_FINISHED_SENDING'```, and empty payload.
 
-### <a id="npm-run-serve-prod"></a>`npm run serve:prod`
+## Testing
 
-Runs all tests, linting and static type checking, then builds and runs the app in production mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run the tests included in this package, run from within ```/node_modules/redux-rsaa-middleware```:
 
-### `npm run test`
-
-Finds all files with extension ".test.js" and ".test.jsx" within the project and runs the tests they contain.
+```npm install && npm run test```

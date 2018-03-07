@@ -2,6 +2,7 @@
 /node_modules
 /build_dev
 /build_prod
+/build_npm/node_modules
 
 # IDE generated files
 .idea

@@ -1,0 +1,29 @@
+{
+  "name": "redux-rsaa-middleware",
+  "version": "1.0.0",
+  "description": "Redux middleware for handling API-calling actions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alessioprestileo/redux-RSAA-middleware.git"
+  },
+  "keywords": [
+    "fontend",
+    "react",
+    "redux",
+    "middleware",
+    "asyncronous"
+  ],
+  "author": "Alessio Prestileo",
+  "license": "See license in LICENSE file",
+  "devDependencies": {
+    "jest": "^22.3.0",
+    "jest-cli": "^22.4.2"
+  },
+  "dependencies": {
+    "superagent": "^3.8.2"
+  }
+}

@@ -4,7 +4,7 @@
 
 import type { Dispatch } from 'redux';
 import type { RSAAState, RSAAAction, MiddlewareAPI } from './types';
-import { testableRSAAMiddleware } from './RSAA';
+import { testableRSAAMiddleware } from './index';
 import RequestAgent from './__mocks__/RequestAgent';
 
 const setupTestData = (

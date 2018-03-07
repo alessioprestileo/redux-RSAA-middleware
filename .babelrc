@@ -1,16 +1,66 @@
 {
-  "presets": [
-    ["env", {
-      "es2015": {
-        "modules": false
-      }
-    }],
-    "react",
-    "flow"
-  ],
-  "plugins": [
-    "react-hot-loader/babel",
-    ["babel-plugin-root-import"],
-    "transform-object-rest-spread"
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        ["env", {
+          "es2015": {
+            "modules": false
+          }
+        }],
+        "react",
+        "flow"
+      ],
+      "plugins": [
+        "react-hot-loader/babel",
+        ["babel-plugin-root-import"],
+        "transform-object-rest-spread"
+      ]
+    },
+    "test": {
+      "presets": [
+        ["env", {
+          "es2015": {
+            "modules": false
+          }
+        }],
+        "react",
+        "flow"
+      ],
+      "plugins": [
+        "react-hot-loader/babel",
+        ["babel-plugin-root-import"],
+        "transform-object-rest-spread"
+      ]
+    },
+    "production": {
+      "presets": [
+        ["env", {
+          "es2015": {
+            "modules": false
+          }
+        }],
+        "react",
+        "flow"
+      ],
+      "plugins": [
+        ["babel-plugin-root-import"],
+        "transform-object-rest-spread"
+      ]
+    },
+    "npm_build": {
+      "presets": [
+        ["env", {
+          "es2015": {
+            "modules": false
+          }
+        }],
+        "react",
+        "flow"
+      ],
+      "plugins": [
+        ["babel-plugin-root-import"],
+        "transform-object-rest-spread"
+      ]
+    }
+  }
 }

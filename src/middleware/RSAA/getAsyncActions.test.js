@@ -11,7 +11,7 @@ import {
 } from './actionTypes';
 
 describe('getAsyncActions', () => {
-  it('returns correct defaults when arguments are not given', () => {
+  it('returns defaults when arguments are not given', () => {
     expect(getAsyncActions({})).toEqual({
       failureAction: {
         type: API_CALL_FAILURE,
@@ -47,7 +47,7 @@ describe('getAsyncActions', () => {
     });
   });
 
-  it('returns correctly when given arguments', () => {
+  it('returns correct output when given arguments', () => {
     const action = {
       type: RSAA,
       payload: {
