@@ -2,10 +2,10 @@ const prodConfig = require('./webpack.config.prod');
 const devConfig = require('./webpack.config.dev');
 
 module.exports = (env) => {
-  switch (env.BUILD_TYPE) {
-    case 'PRODUCTION':
+  switch (env.NODE_ENV) {
+    case 'production':
       return prodConfig;
-    case 'DEVELOPMENT':
+    case 'development':
       return devConfig;
     default:
       return devConfig;

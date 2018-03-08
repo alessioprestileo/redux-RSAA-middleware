@@ -5,8 +5,8 @@
   "main": "index.jsx",
   "scripts": {
     "start": "npm run serve:dev",
-    "build:dev": "npm run flow && npm run eslint:fix && npm run test && webpack --env.BUILD_TYPE=DEVELOPMENT",
-    "build:prod": "npm run flow && npm run eslint:fix && npm run test && webpack --env.BUILD_TYPE=PRODUCTION",
+    "build:dev": "npm run flow && npm run eslint:fix && npm run test && webpack --env.NODE_ENV=development",
+    "build:prod": "npm run flow && npm run eslint:fix && npm run test && webpack --env.NODE_ENV=production",
     "eslint:log": "eslint . --ext .js,.jsx",
     "eslint:fix": "eslint . --ext .js,.jsx --fix",
     "flow": "flow",

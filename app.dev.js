@@ -6,7 +6,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware'); // eslint-disabl
 const path = require('path');
 
 const app = express();
-const webpackConfig = webpackConfigFunc('DEVELOPMENT');
+const webpackConfig = webpackConfigFunc('development');
 const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
