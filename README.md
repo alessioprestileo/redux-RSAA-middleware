@@ -41,7 +41,7 @@ Notice that ```topReducer``` and ```initialState``` need to be defined within yo
 ```js
 
 import { createStore, applyMiddleware } from 'redux';
-import RSAAMiddleware from 'redux-rsaa-middleware';
+import { RSAAMiddleware } from 'redux-rsaa-middleware';
 import topReducer from './reducers';
 import initialState from './initialState';
 
