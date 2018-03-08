@@ -3,6 +3,7 @@
 import type {
   ActionCreator,
   RSAAAction,
+  RSAAPayload,
   SamplePropsAction,
   SamplePropsPayload,
 } from '../types';
@@ -13,7 +14,7 @@ export const setSampleProp: ActionCreator = (data: SamplePropsPayload): SamplePr
   payload: data,
 });
 
-export const createRSAA: ActionCreator = (data: Object): RSAAAction => ({
+export const createRSAA: ActionCreator = (data: RSAAPayload): RSAAAction => ({
   type: RSAA,
   payload: data,
 });

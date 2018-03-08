@@ -1,20 +1,16 @@
 // @flow
 
-import type { RSAAAction as RSAAActionImport } from '../middleware/RSAA/types';
+import type {
+  RSAAAction as RSAAActionImport,
+  RSAAPayload as RSAAPayloadImport,
+} from '../middleware/RSAA/types';
 import {
   SET_SAMPLEPROP,
   UPDATE_USERS_WITH_FETCHED,
   EDIT_USER,
 } from '../actions/actionTypes';
 
-export type Action = {|
-  type: $Subtype<string>, // eslint-disable-line no-undef
-  payload: Object,
-|};
-
-export type RSAAAction = Action & RSAAActionImport;
-
-export type UsersAction = Action & {|
+export type UsersAction = {|
   type: typeof UPDATE_USERS_WITH_FETCHED | typeof EDIT_USER,
   payload: Object,
 |};
@@ -24,10 +20,16 @@ export type SamplePropsPayload = {|
   sampleProp2?: string,
 |};
 
-export type SamplePropsAction = Action & {|
+export type SamplePropsAction = {|
   type: typeof SET_SAMPLEPROP,
   payload: SamplePropsPayload,
 |};
+
+export type RSAAPayload = RSAAPayloadImport;
+
+export type RSAAAction = RSAAActionImport;
+
+export type Action = RSAAAction | UsersAction | SamplePropsAction;
 
 export type ActionCreator = Object => Action;
 
@@ -48,8 +50,6 @@ export type State = {|
   +users: UsersState,
   +others: OthersState,
 |};
-
-// export type Reducer = (State, Action) => State;
 
 export type Reducer<S, A> = (S, A) => S;
 

@@ -1,6 +1,6 @@
 {
   "name": "redux-rsaa-middleware",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Redux middleware for handling API-calling actions.",
   "main": "index.js",
   "scripts": {
