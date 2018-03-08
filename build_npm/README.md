@@ -60,7 +60,7 @@ The middleware will intercept and handle actions of type ```'RSAA'```, which mus
 
 ```
 
-When such an action is dispatched, the middleware will attempt to send a request is sent using the values of the payload properties ```method```, ```path``` and ```query```, and dispatch during the process the actions contained in the following properties:
+When such an action is dispatched, the middleware will attempt to send a request using the values of the payload properties ```method```, ```path``` and ```query```, and dispatch during the process the actions contained in the following properties:
 
 - startedSendingAction
 
