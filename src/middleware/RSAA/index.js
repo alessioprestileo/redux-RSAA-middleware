@@ -50,7 +50,5 @@ export const testableRSAAMiddleware = (requestAgent : any) =>
     };
 
 // prettier-ignore
-const RSAAMiddleware : Middleware<RSAAState, RSAAAction, Dispatch<RSAAAction>> =
+export const RSAAMiddleware : Middleware<RSAAState, RSAAAction, Dispatch<RSAAAction>> =
     testableRSAAMiddleware(superagent);
-
-export default RSAAMiddleware;

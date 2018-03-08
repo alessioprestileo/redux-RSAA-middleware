@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.testableRSAAMiddleware = undefined;
+exports.RSAAMiddleware = exports.testableRSAAMiddleware = undefined;
 
 var _superagent = require("superagent");
 
@@ -67,6 +67,4 @@ var testableRSAAMiddleware = exports.testableRSAAMiddleware = function testableR
 
 // prettier-ignore
 
-var RSAAMiddleware = testableRSAAMiddleware(_superagent2.default);
-
-exports.default = RSAAMiddleware;
+var RSAAMiddleware = exports.RSAAMiddleware = testableRSAAMiddleware(_superagent2.default);
