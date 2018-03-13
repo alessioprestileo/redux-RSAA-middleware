@@ -12,6 +12,7 @@
     "flow": "flow",
     "flow-typed-install": "flow-typed install",
     "gulp": "gulp",
+    "initialize-project": "npm install && npm run flow-typed-install",
     "precommit": "npm run flow && npm run test && lint-staged",
     "sass-lint:log": "sass-lint --verbose",
     "serve:dev": "npm run build:dev -- --watch & node app.dev.js",
