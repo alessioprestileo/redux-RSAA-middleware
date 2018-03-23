@@ -61,14 +61,16 @@ The middleware will intercept and handle actions of type ```'RSAA'```, which mus
   payload: {
     method?: string,
     path?: string,
-    query?: string,
+    body?: Object,
+    headers?: Object,
+    query?: string | Object,
     error?: Object,
     errorTime?: string,
     response?: Object,
     failureAction?: Action,
-    successAction?: Action,
-    startedSendingAction?: Action,
     finishedSendingAction?: Action,
+    startedSendingAction?: Action,
+    successAction?: Action,
   },
 };
 

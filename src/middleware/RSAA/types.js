@@ -20,10 +20,10 @@ export type RSAAPayload = {
   error?: Object,
   errorTime?: string,
   response?: Object,
-  failureAction?: ApiCallFailureAction, // eslint-disable-line no-use-before-define
-  finishedSendingAction?: ApiCallFinishedAction, // eslint-disable-line no-use-before-define
-  startedSendingAction?: ApiCallStartedAction, // eslint-disable-line no-use-before-define
-  successAction?: ApiCallSuccessAction, // eslint-disable-line no-use-before-define
+  failureAction?: Action, // eslint-disable-line no-use-before-define
+  finishedSendingAction?: Action, // eslint-disable-line no-use-before-define
+  startedSendingAction?: Action, // eslint-disable-line no-use-before-define
+  successAction?: Action, // eslint-disable-line no-use-before-define
 };
 
 export type RSAAAction = {|
@@ -80,10 +80,10 @@ export type RSAAMiddleware<S, A, D = Dispatch<A>> = (
 ) => (next: D) => D;
 
 export type AsyncActionsCollection = {
-  failureAction: ApiCallFailureAction,
-  finishedSendingAction: ApiCallFinishedAction,
-  startedSendingAction: ApiCallStartedAction,
-  successAction: ApiCallSuccessAction,
+  failureAction: Action,
+  finishedSendingAction: Action,
+  startedSendingAction: Action,
+  successAction: Action,
 };
 
 export type getAsyncActions = (payload: RSAAPayload) => AsyncActionsCollection;
