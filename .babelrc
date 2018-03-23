@@ -13,7 +13,8 @@
       "plugins": [
         "react-hot-loader/babel",
         ["babel-plugin-root-import"],
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-class-properties"
       ]
     },
     "test": {
@@ -29,7 +30,8 @@
       "plugins": [
         "react-hot-loader/babel",
         ["babel-plugin-root-import"],
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-class-properties"
       ]
     },
     "production": {
@@ -44,7 +46,8 @@
       ],
       "plugins": [
         ["babel-plugin-root-import"],
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-class-properties"
       ]
     },
     "npm_build": {
@@ -59,7 +62,8 @@
       ],
       "plugins": [
         ["babel-plugin-root-import"],
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-class-properties"
       ]
     }
   }
