@@ -1,5 +1,7 @@
 "use strict";
 
+var _actionTypes = require("./actionTypes");
+
 var _getAsyncActions = require("./getAsyncActions");
 
 var _getAsyncActions2 = _interopRequireDefault(_getAsyncActions);
@@ -53,10 +55,16 @@ var actionRSAADefault = {
 var actionRSAAWithInputs = {
   type: "RSAA",
   payload: {
-    failureAction: { type: "FAILURE", payload: {} },
-    successAction: { type: "SUCCESS", payload: {} },
-    startedSendingAction: { type: "STARTED_SENDING", payload: {} },
-    finishedSendingAction: { type: "FINISHED_SENDING", payload: {} }
+    failureAction: { type: _actionTypes.API_CALL_FAILURE, payload: {} },
+    finishedSendingAction: {
+      type: _actionTypes.API_CALL_FINISHED_SENDING,
+      payload: {}
+    },
+    startedSendingAction: {
+      type: _actionTypes.API_CALL_STARTED_SENDING,
+      payload: {}
+    },
+    successAction: { type: _actionTypes.API_CALL_SUCCESS, payload: {} }
   }
 };
 

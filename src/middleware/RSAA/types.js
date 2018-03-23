@@ -1,24 +1,68 @@
 // @flow
 
-export type RSAAState = Object;
+import {
+  RSAA,
+  API_CALL_FAILURE,
+  API_CALL_FINISHED_SENDING,
+  API_CALL_STARTED_SENDING,
+  API_CALL_SUCCESS,
+  NOT_RSAA,
+} from './actionTypes';
 
-export type RSAAAction = {
-  type: string,
-  payload: RSAAPayload, // eslint-disable-line no-use-before-define
-};
+export type RSAAState = Object;
 
 export type RSAAPayload = {
   method?: string,
   path?: string,
-  query?: string,
+  body?: Object,
+  headers?: Object,
+  query?: string | Object,
   error?: Object,
   errorTime?: string,
   response?: Object,
-  failureAction?: RSAAAction,
-  successAction?: RSAAAction,
-  startedSendingAction?: RSAAAction,
-  finishedSendingAction?: RSAAAction,
+  failureAction?: ApiCallFailureAction, // eslint-disable-line no-use-before-define
+  finishedSendingAction?: ApiCallFinishedAction, // eslint-disable-line no-use-before-define
+  startedSendingAction?: ApiCallStartedAction, // eslint-disable-line no-use-before-define
+  successAction?: ApiCallSuccessAction, // eslint-disable-line no-use-before-define
 };
+
+export type RSAAAction = {|
+  type: typeof RSAA,
+  payload: RSAAPayload,
+|};
+
+export type NotRSAAAction = {|
+  type: typeof NOT_RSAA,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallFailureAction = {|
+  type: typeof API_CALL_FAILURE,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallFinishedAction = {|
+  type: typeof API_CALL_FINISHED_SENDING,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallStartedAction = {|
+  type: typeof API_CALL_STARTED_SENDING,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallSuccessAction = {|
+  type: typeof API_CALL_SUCCESS,
+  payload: RSAAPayload,
+|};
+
+export type Action =
+  | RSAAAction
+  | NotRSAAAction
+  | ApiCallFailureAction
+  | ApiCallFinishedAction
+  | ApiCallStartedAction
+  | ApiCallSuccessAction;
 
 export type DispatchAPI<A> = (action: A) => A;
 
@@ -36,10 +80,10 @@ export type RSAAMiddleware<S, A, D = Dispatch<A>> = (
 ) => (next: D) => D;
 
 export type AsyncActionsCollection = {
-  failureAction: RSAAAction,
-  successAction: RSAAAction,
-  startedSendingAction: RSAAAction,
-  finishedSendingAction: RSAAAction,
+  failureAction: ApiCallFailureAction,
+  finishedSendingAction: ApiCallFinishedAction,
+  startedSendingAction: ApiCallStartedAction,
+  successAction: ApiCallSuccessAction,
 };
 
 export type getAsyncActions = (payload: RSAAPayload) => AsyncActionsCollection;

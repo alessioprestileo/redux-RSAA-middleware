@@ -19,8 +19,16 @@ const App = (props) => {
     props.storeActions.setSampleProp({ sampleProp1: 'newProp1' });
   const dispatchAsyncAction = () => {
     props.storeActions.createRSAA({
-      method: 'GET',
-      path: 'https://jsonplaceholder.typicode.com/users',
+      method: 'post',
+      path: 'https://jsonplaceholder.typicode.com/posts',
+      body: {
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+      },
+      headers: {
+        'my-header': 'hello, this is my header',
+      },
       startedSendingAction: {
         type: STARTED_FETCHING_USERS,
         payload: null,

@@ -7,6 +7,8 @@ import {
   SET_SAMPLEPROP,
   UPDATE_USERS_WITH_FETCHED,
   EDIT_USER,
+  FINISHED_FETCHING_USERS,
+  STARTED_FETCHING_USERS,
 } from '../actions/actionTypes';
 
 export type UsersAction = {|
@@ -31,14 +33,32 @@ export type RSAAAction = {|
   payload: RSAAPayloadImport,
 |};
 
-export type RSAAFailureAction = {|
-  type: typeof API_CALL_FAILURE,
+export type ApiCallFailureAction = {|
+  type: typeof API_CALL_FAILURE | "FAILURE",
   payload: RSAAPayloadImport,
+|};
+
+export type ApiCallFinishedAction = {|
+  type: "FINISHED_SENDING" | typeof FINISHED_FETCHING_USERS,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallStartedAction = {|
+  type: "STARTED_SENDING" | typeof STARTED_FETCHING_USERS,
+  payload: RSAAPayload,
+|};
+
+export type ApiCallSuccessAction = {|
+  type: "SUCCESS" | typeof UPDATE_USERS_WITH_FETCHED,
+  payload: RSAAPayload,
 |};
 
 export type Action =
   | RSAAAction
-  | RSAAFailureAction
+  | ApiCallFailureAction
+  | ApiCallFinishedAction
+  | ApiCallStartedAction
+  | ApiCallSuccessAction
   | UsersAction
   | SamplePropsAction;
 

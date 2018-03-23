@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader'; // eslint-disable-line import/no-extraneous-dependencies
-import { RSAAMiddleware } from '../build_npm';
+import { RSAAMiddleware } from './middleware/RSAA';
 import topReducer from './reducers';
 import initialState from './initialState';
 import App from './containers/App';

@@ -20,26 +20,36 @@ var RequestAgent = function RequestAgent() {
 
   _classCallCheck(this, RequestAgent);
 
-  if (!(err || res)) {
-    this.err = {};
-  }
-  this.err = this.err || err;
-  this.res = res;
-
   this.request = function(method, path) {
     _this.method = method;
     _this.path = path;
     return _this;
   };
 
-  this.query = function(queryString) {
-    _this.queryProp = queryString;
+  this.query = function(query) {
+    _this.queryProp = query;
+    return _this;
+  };
+
+  this.send = function(body) {
+    _this.body = body;
+    return _this;
+  };
+
+  this.set = function(headers) {
+    _this.headers = headers;
     return _this;
   };
 
   this.end = function(callback) {
     return callback(_this.err, _this.res);
   };
+
+  if (!(err || res)) {
+    this.err = {};
+  }
+  this.err = this.err || err;
+  this.res = res;
 };
 
 exports.default = RequestAgent;

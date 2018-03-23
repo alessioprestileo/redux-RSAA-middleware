@@ -3,7 +3,13 @@
 
 // @flow
 
-import type { RSAAAction } from './types';
+import type { RSAAAction, NotRSAAAction } from './types';
+import {
+  API_CALL_FAILURE,
+  API_CALL_FINISHED_SENDING,
+  API_CALL_STARTED_SENDING,
+  API_CALL_SUCCESS,
+} from './actionTypes';
 import getAsyncActions from './getAsyncActions';
 import setupTestData from './setupTestData';
 
@@ -17,14 +23,14 @@ const actionRSAADefault: RSAAAction = {
 const actionRSAAWithInputs: RSAAAction = {
   type: 'RSAA',
   payload: {
-    failureAction: { type: 'FAILURE', payload: {} },
-    successAction: { type: 'SUCCESS', payload: {} },
-    startedSendingAction: { type: 'STARTED_SENDING', payload: {} },
-    finishedSendingAction: { type: 'FINISHED_SENDING', payload: {} },
+    failureAction: { type: API_CALL_FAILURE, payload: {} },
+    finishedSendingAction: { type: API_CALL_FINISHED_SENDING, payload: {} },
+    startedSendingAction: { type: API_CALL_STARTED_SENDING, payload: {} },
+    successAction: { type: API_CALL_SUCCESS, payload: {} },
   },
 };
 
-const actionNotRSAA: RSAAAction = {
+const actionNotRSAA: NotRSAAAction = {
   type: 'NOT_RSAA',
   payload: {},
 };

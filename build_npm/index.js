@@ -36,6 +36,10 @@ var testableRSAAMiddleware = exports.testableRSAAMiddleware = function testableR
 
         var dispatch = api.dispatch;
         var _action$payload = action.payload,
+            _action$payload$body = _action$payload.body,
+            body = _action$payload$body === undefined ? {} : _action$payload$body,
+            _action$payload$heade = _action$payload.headers,
+            headers = _action$payload$heade === undefined ? {} : _action$payload$heade,
             _action$payload$metho = _action$payload.method,
             method = _action$payload$metho === undefined ? 'GET' : _action$payload$metho,
             _action$payload$path = _action$payload.path,
@@ -46,7 +50,27 @@ var testableRSAAMiddleware = exports.testableRSAAMiddleware = function testableR
 
         dispatch(startedSendingAction);
 
-        requestAgent(method, path).query(query).end(function (err, res) {
+        var baseRequest = requestAgent(method, path);
+        switch (method) {
+          case 'PATCH':
+          case 'patch':
+          case 'POST':
+          case 'post':
+          case 'PUT':
+          case 'put':
+            baseRequest.send(body);
+            break;
+          case 'DELETE':
+          case 'delete':
+            break;
+          case 'GET':
+          case 'get':
+          default:
+            baseRequest.query(query);
+        }
+
+        baseRequest.set(headers);
+        baseRequest.end(function (err, res) {
           if (err) {
             failureAction.payload.error = err;
             var date = new Date(Date.now());

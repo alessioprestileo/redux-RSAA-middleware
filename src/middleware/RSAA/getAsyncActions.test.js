@@ -16,8 +16,7 @@ describe('getAsyncActions', () => {
       failureAction: {
         type: API_CALL_FAILURE,
         payload: {
-          failureMessage:
-            'Failed to send "GET" request to "NO_PATH" with query "NO_QUERY"',
+          failureMessage: 'Failed to send "GET" request to "NO_PATH"',
           error: {},
           errorTime: '',
         },
@@ -25,23 +24,20 @@ describe('getAsyncActions', () => {
       successAction: {
         type: API_CALL_SUCCESS,
         payload: {
-          successMessage:
-            'Successfully sent "GET" request to "NO_PATH" with query "NO_QUERY"',
+          successMessage: 'Successfully sent "GET" request to "NO_PATH"',
           response: {},
         },
       },
       startedSendingAction: {
         type: API_CALL_STARTED_SENDING,
         payload: {
-          startedSendingMessage:
-            'Started sending "GET" request to "NO_PATH" with query "NO_QUERY"',
+          startedSendingMessage: 'Started sending "GET" request to "NO_PATH"',
         },
       },
       finishedSendingAction: {
         type: API_CALL_FINISHED_SENDING,
         payload: {
-          finishedSendingMessage:
-            'Finished sending "GET" request to "NO_PATH" with query "NO_QUERY"',
+          finishedSendingMessage: 'Finished sending "GET" request to "NO_PATH"',
         },
       },
     });

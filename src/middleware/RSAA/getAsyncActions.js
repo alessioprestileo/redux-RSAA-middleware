@@ -1,4 +1,4 @@
-// Flow
+// @flow
 
 import {
   API_CALL_FAILURE,
@@ -12,28 +12,24 @@ import type {
   RSAAPayload,
 } from './types';
 
-const getAsyncMessages = (
-  method: string = 'GET',
-  path: string = '',
-  query: string = '',
-) => ({
+const getAsyncMessages = (method: string = 'GET', path: string = '') => ({
   failureMessage: `Failed to send "${method}" request to "${
     path !== '' ? path : 'NO_PATH'
-  }" with query "${query !== '' ? query : 'NO_QUERY'}"`,
+  }"`,
   successMessage: `Successfully sent "${method}" request to "${
     path !== '' ? path : 'NO_PATH'
-  }" with query "${query !== '' ? query : 'NO_QUERY'}"`,
+  }"`,
   startedSendingMessage: `Started sending "${method}" request to "${
     path !== '' ? path : 'NO_PATH'
-  }" with query "${query !== '' ? query : 'NO_QUERY'}"`,
+  }"`,
   finishedSendingMessage: `Finished sending "${method}" request to "${
     path !== '' ? path : 'NO_PATH'
-  }" with query "${query !== '' ? query : 'NO_QUERY'}"`,
+  }"`,
 });
 
 const getAsyncActions: getAsyncActionsType = (payload: RSAAPayload): AsyncActionsCollection => {
-  const { method, path, query } = payload;
-  const defaultMessages = getAsyncMessages(method, path, query);
+  const { method, path } = payload;
+  const defaultMessages = getAsyncMessages(method, path);
 
   return {
     failureAction: payload.failureAction || {

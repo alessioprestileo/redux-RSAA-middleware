@@ -11,50 +11,39 @@ var getAsyncMessages = function getAsyncMessages() {
     arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "GET";
   var path =
     arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  var query =
-    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   return {
     failureMessage:
       'Failed to send "' +
       method +
       '" request to "' +
       (path !== "" ? path : "NO_PATH") +
-      '" with query "' +
-      (query !== "" ? query : "NO_QUERY") +
       '"',
     successMessage:
       'Successfully sent "' +
       method +
       '" request to "' +
       (path !== "" ? path : "NO_PATH") +
-      '" with query "' +
-      (query !== "" ? query : "NO_QUERY") +
       '"',
     startedSendingMessage:
       'Started sending "' +
       method +
       '" request to "' +
       (path !== "" ? path : "NO_PATH") +
-      '" with query "' +
-      (query !== "" ? query : "NO_QUERY") +
       '"',
     finishedSendingMessage:
       'Finished sending "' +
       method +
       '" request to "' +
       (path !== "" ? path : "NO_PATH") +
-      '" with query "' +
-      (query !== "" ? query : "NO_QUERY") +
       '"'
   };
-}; // Flow
+};
 
 var getAsyncActions = function getAsyncActions(payload) {
   var method = payload.method,
-    path = payload.path,
-    query = payload.query;
+    path = payload.path;
 
-  var defaultMessages = getAsyncMessages(method, path, query);
+  var defaultMessages = getAsyncMessages(method, path);
 
   return {
     failureAction: payload.failureAction || {

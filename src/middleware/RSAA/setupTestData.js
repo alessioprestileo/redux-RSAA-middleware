@@ -3,7 +3,7 @@
 // @flow
 
 import type { Dispatch } from 'redux';
-import type { RSAAState, RSAAAction, MiddlewareAPI } from './types';
+import type { Action, RSAAState, RSAAAction, MiddlewareAPI } from './types';
 import { testableRSAAMiddleware } from './index';
 import RequestAgent from './__mocks__/RequestAgent';
 
@@ -12,8 +12,8 @@ const setupTestData = (
   requestOutcome: ?string = null,
 ) => {
   const state: RSAAState = { testing: true };
-  const dispatch: Dispatch<RSAAAction> = jest.fn();
-  const api: MiddlewareAPI<RSAAState, RSAAAction, Dispatch<RSAAAction>> = {
+  const dispatch: Dispatch<Action> = jest.fn();
+  const api: MiddlewareAPI<RSAAState, RSAAAction, Dispatch<Action>> = {
     dispatch,
     getState: () => state,
   };
