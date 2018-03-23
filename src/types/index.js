@@ -1,10 +1,9 @@
 // @flow
 
-import type {
-  RSAAAction as RSAAActionImport,
-  RSAAPayload as RSAAPayloadImport,
-} from '../middleware/RSAA/types';
+import type { RSAAPayload as RSAAPayloadImport } from '../middleware/RSAA/types';
 import {
+  API_CALL_FAILURE,
+  RSAA,
   SET_SAMPLEPROP,
   UPDATE_USERS_WITH_FETCHED,
   EDIT_USER,
@@ -27,9 +26,21 @@ export type SamplePropsAction = {|
 
 export type RSAAPayload = RSAAPayloadImport;
 
-export type RSAAAction = RSAAActionImport;
+export type RSAAAction = {|
+  type: typeof RSAA,
+  payload: RSAAPayloadImport,
+|};
 
-export type Action = RSAAAction | UsersAction | SamplePropsAction;
+export type RSAAFailureAction = {|
+  type: typeof API_CALL_FAILURE,
+  payload: RSAAPayloadImport,
+|};
+
+export type Action =
+  | RSAAAction
+  | RSAAFailureAction
+  | UsersAction
+  | SamplePropsAction;
 
 export type ActionCreator = Object => Action;
 
