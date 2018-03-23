@@ -16,11 +16,11 @@ const configureStore = initState =>
   createStoreWithMiddleware(topReducer, initState);
 const store = configureStore(initialState);
 
-const render = (Component, storeInstance) => {
+const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Component store={storeInstance} />
+        <Component />
       </Provider>
     </AppContainer>,
     // $FlowFixMe
@@ -28,12 +28,12 @@ const render = (Component, storeInstance) => {
   );
 };
 
-render(App, store);
+render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
   // $FlowFixMe
   module.hot.accept('./containers/App', () => {
-    render(require('./containers/App').default, store); // eslint-disable-line global-require
+    render(require('./containers/App').default); // eslint-disable-line global-require
   });
 }
